@@ -9,8 +9,21 @@
  * For s1 = "aabcc" and s2 = "adcaa", the output should be 3
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
-function getCommonCharacterCount(/* s1, s2 */) {
-  throw new Error('Not implemented');
+function getCommonCharacterCount(s1, s2) {
+  let x = s1.split('').sort();
+  let y = s2.split('').sort();
+  let res = 0;
+  let xx;
+  let yy;
+  while (x.length) {
+    const target = x[0];
+    xx = x.length;
+    yy = y.length;
+    x = x.filter((elem) => elem !== target);
+    y = y.filter((elem) => elem !== target);
+    res += Math.min(xx - x.length, yy - y.length);
+  }
+  return res;
 }
 
 module.exports = getCommonCharacterCount;
